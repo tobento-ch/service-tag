@@ -10,12 +10,12 @@ HTML tags for PHP applications.
 - [Documentation](#documentation)
     - [Tag](#tag)
         - [Create Tag](#create-tag)
-        - [Tag Methods](#tag-methods)
+        - [Tag Interface](#tag-interface)
     - [NullTag](#nulltag) 
     - [Taggable](#taggable)
     - [Attributes](#attributes)
         - [Create Attributes](#create-attributes)
-        - [Attributes Methods](#attributes-methods)
+        - [Attributes Interface](#attributes-interface)
     - [Str](#str)
 - [Credits](#credits)
 ___
@@ -45,11 +45,15 @@ composer require tobento/service-tag
 
 ```php
 use Tobento\Service\Tag\Tag;
+use Tobento\Service\Tag\TagInterface;
 
 $tag = new Tag(
     name: 'p',
     html: 'html' // Must be escaped
 );
+
+var_dump($tag instanceof TagInterface);
+// bool(true)
 ```
 
 You might adjust the default parameters.
@@ -67,15 +71,19 @@ $tag = new Tag(
 );
 ```
 
-### Tag Methods
+### Tag Interface
 
 **getters**
 
 ```php
 use Tobento\Service\Tag\Tag;
-use Tobento\Service\Tag\Attributes;
+use Tobento\Service\Tag\TagInterface;
+use Tobento\Service\Tag\AttributesInterface;
 
 $tag = new Tag(name: 'li', html: 'html');
+
+var_dump($tag instanceof TagInterface);
+// bool(true)
 
 var_dump($tag->getName());
 // string(2) "li"
@@ -86,7 +94,7 @@ var_dump($tag->getHtml());
 var_dump($tag->getLevel());
 // NULL (or int)
 
-var_dump($tag->attributes() instanceof Attributes);
+var_dump($tag->attributes() instanceof AttributesInterface);
 // bool(true)
 ```
 
@@ -205,14 +213,14 @@ The NullTag::class does not render any html tag at all only its html.
 
 ```php
 use Tobento\Service\Tag\NullTag;
-use Tobento\Service\Tag\Tag;
+use Tobento\Service\Tag\TagInterface;
 
 $tag = new NullTag(
     html: 'html', // Must be escaped
     level: 2, // default is null
 );
 
-var_dump($tag instanceof Tag);
+var_dump($tag instanceof TagInterface);
 // bool(true)
 
 var_dump((string)$tag);
@@ -225,6 +233,7 @@ var_dump((string)$tag);
 use Tobento\Service\Tag\Taggable;
 use Tobento\Service\Tag\HasTag;
 use Tobento\Service\Tag\Tag;
+use Tobento\Service\Tag\TagInterface;
 
 class Foo implements Taggable
 {
@@ -234,7 +243,7 @@ class Foo implements Taggable
 $foo = new Foo();
 $foo->setTag(new Tag(name: 'p'));
 
-var_dump($foo->tag() instanceof Tag);
+var_dump($foo->tag() instanceof TagInterface);
 // bool(true)
 ```
 
@@ -244,8 +253,12 @@ var_dump($foo->tag() instanceof Tag);
 
 ```php
 use Tobento\Service\Tag\Attributes;
+use Tobento\Service\Tag\AttributesInterface;
 
 $attributes = new Attributes();
+
+var_dump($attributes instanceof AttributesInterface);
+// bool(true)
 
 // or
 $attributes = new Attributes([
@@ -265,14 +278,18 @@ var_dump((string)$attributes);
 // string(90) " class="name" data-foo="" required readonly data-bar='{"key":"value"}'"
 ```
 
-### Attributes Methods
+### Attributes Interface
 
 **empty**
 
 ```php
 use Tobento\Service\Tag\Attributes;
+use Tobento\Service\Tag\AttributesInterface;
 
 $attributes = new Attributes();
+
+var_dump($attributes instanceof AttributesInterface);
+// bool(true)
 
 var_dump($attributes->empty());
 // bool(true)

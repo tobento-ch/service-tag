@@ -13,12 +13,10 @@ declare(strict_types=1);
 
 namespace Tobento\Service\Tag;
 
-use Stringable;
-
 /**
  * Attributes
  */
-class Attributes implements Stringable
+class Attributes implements AttributesInterface
 {
     /**
      * Create a new Attributes.

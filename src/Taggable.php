@@ -21,15 +21,15 @@ interface Taggable
     /**
      * Set the tag.
      *
-     * @param Tag $tag
+     * @param TagInterface $tag
      * @return static $this
      */
-    public function setTag(Tag $tag): static;
+    public function setTag(TagInterface $tag): static;
         
     /**
      * Returns the tag.
      *
-     * @return Tag
+     * @return TagInterface
      */
-    public function tag(): Tag;
+    public function tag(): TagInterface;
 }

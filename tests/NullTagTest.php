@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Tobento\Service\Tag\Test;
 
 use PHPUnit\Framework\TestCase;
+use Tobento\Service\Tag\TagInterface;
 use Tobento\Service\Tag\NullTag;
 use Tobento\Service\Tag\Attributes;
 
@@ -22,6 +23,14 @@ use Tobento\Service\Tag\Attributes;
  */
 class NullTagTest extends TestCase
 {
+    public function testThatImplementsTagInterface()
+    {
+        $this->assertInstanceOf(
+            TagInterface::class,
+            new NullTag('html')
+        );
+    }
+    
     public function testTagGetters()
     {
         $tag = new NullTag(

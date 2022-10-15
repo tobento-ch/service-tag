@@ -15,6 +15,7 @@ namespace Tobento\Service\Tag\Test;
 
 use PHPUnit\Framework\TestCase;
 use Tobento\Service\Tag\Tag;
+use Tobento\Service\Tag\TagInterface;
 use Tobento\Service\Tag\Attributes;
 
 /**
@@ -26,6 +27,14 @@ class TagTest extends TestCase
         'area', 'br', 'col', 'embed', 'hr', 'img', 'input',
         'link', 'meta', 'param', 'source', 'track', 'wbr',
     ];    
+
+    public function testThatImplementsTagInterface()
+    {
+        $this->assertInstanceOf(
+            TagInterface::class,
+            new Tag('p')
+        );
+    }
     
     public function testTagGetters()
     {

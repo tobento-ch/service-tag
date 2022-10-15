@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Tobento\Service\Tag\Test;
 
 use PHPUnit\Framework\TestCase;
+use Tobento\Service\Tag\AttributesInterface;
 use Tobento\Service\Tag\Attributes;
 
 /**
@@ -21,6 +22,14 @@ use Tobento\Service\Tag\Attributes;
  */
 class AttributesTest extends TestCase
 {
+    public function testThatImplementsAttributesInterface()
+    {
+        $this->assertInstanceOf(
+            AttributesInterface::class,
+            new Attributes()
+        );
+    }
+    
     public function testEmptyMethod()
     {
         $this->assertTrue((new Attributes())->empty());

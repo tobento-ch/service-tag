@@ -18,7 +18,7 @@ use Stringable;
 /**
  * Tag
  */
-class Tag implements Stringable
+class Tag implements TagInterface
 {
     /**
      * @var array<int, string>
@@ -34,9 +34,9 @@ class Tag implements Stringable
     protected string $html = '';
     
     /**
-     * @var Attributes
+     * @var AttributesInterface
      */
-    protected Attributes $attributes;
+    protected AttributesInterface $attributes;
     
     /**
      * @var string The html to prepend.
@@ -53,14 +53,14 @@ class Tag implements Stringable
      *
      * @param string $name The tag name such as 'li'.
      * @param string|Stringable $html The tag html content.
-     * @param null|Attributes $attributes
+     * @param null|AttributesInterface $attributes
      * @param null|int $level The level depth of the tag.
      * @param bool $renderEmptyTag
      */
     public function __construct(
         protected string $name,
         string|Stringable $html = '',
-        null|Attributes $attributes = null,
+        null|AttributesInterface $attributes = null,
         protected null|int $level = null,
         protected bool $renderEmptyTag = true
     ){
@@ -140,9 +140,9 @@ class Tag implements Stringable
     /**
      * Returns the attributes.
      *
-     * @return Attributes
+     * @return AttributesInterface
      */
-    public function attributes(): Attributes
+    public function attributes(): AttributesInterface
     {
         return $this->attributes;
     }
@@ -150,10 +150,10 @@ class Tag implements Stringable
     /**
      * Returns a new instance with the specified attributes.
      *
-     * @param Attributes $attributes
+     * @param AttributesInterface $attributes
      * @return static
      */
-    public function withAttributes(Attributes $attributes): static
+    public function withAttributes(AttributesInterface $attributes): static
     {
         $new = clone $this;
         $new->attributes = $attributes;
@@ -244,7 +244,7 @@ class Tag implements Stringable
     {
         $this->append .= (string)$html;
         return $this;
-    }    
+    }
 
     /**
      * Set an attribute to the attributes.
