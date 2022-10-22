@@ -81,6 +81,15 @@ interface TagInterface extends Stringable
     public function withAttributes(AttributesInterface $attributes): static;
     
     /**
+     * Returns a new instance with the specified attribute.
+     *
+     * @param string $name
+     * @param mixed $value = null
+     * @return static
+     */
+    public function withAttr(string $name, mixed $value = null): static;
+    
+    /**
      * Returns the evaluated contents of the tag.
      *
      * @return string
