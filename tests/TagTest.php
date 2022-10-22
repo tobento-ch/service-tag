@@ -59,6 +59,7 @@ class TagTest extends TestCase
         
         $this->assertFalse($tag === $tagNew);
         $this->assertSame('ul', $tagNew->getName());
+        $this->assertFalse($tag->attributes() === $tagNew->attributes());
     }
 
     public function testWithHtmlMethod()
@@ -68,6 +69,7 @@ class TagTest extends TestCase
         
         $this->assertFalse($tag === $tagNew);
         $this->assertSame('html', $tagNew->getHtml());
+        $this->assertFalse($tag->attributes() === $tagNew->attributes());
     }
     
     public function testWithLevelMethod()
@@ -77,6 +79,7 @@ class TagTest extends TestCase
         
         $this->assertFalse($tag === $tagNew);
         $this->assertSame(2, $tagNew->getLevel());
+        $this->assertFalse($tag->attributes() === $tagNew->attributes());
     }
     
     public function testWithAttributesMethod()
@@ -88,6 +91,20 @@ class TagTest extends TestCase
         $this->assertFalse($tag === $tagNew);
         $this->assertTrue($attributes === $tagNew->attributes());
         $this->assertFalse($attributes === $tag->attributes());
+    }
+    
+    public function testWithAttrMethod()
+    {
+        $tag = new Tag(name: 'p');
+        $tagNew = $tag->withAttr('data-foo', 'value');
+        
+        $this->assertFalse($tag === $tagNew);
+        $this->assertFalse($tag->attributes() === $tagNew->attributes());
+        
+        $this->assertSame(
+            '<p data-foo="value"></p>',
+            (string)$tagNew
+        );        
     }
     
     public function testPrependMethod()
