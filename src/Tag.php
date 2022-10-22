@@ -161,6 +161,20 @@ class Tag implements TagInterface
     }
     
     /**
+     * Returns a new instance with the specified attribute.
+     *
+     * @param string $name
+     * @param mixed $value = null
+     * @return static
+     */
+    public function withAttr(string $name, mixed $value = null): static
+    {
+        $new = clone $this;
+        $new->attributes()->set($name, $value);
+        return $new;
+    }
+    
+    /**
      * Returns the evaluated contents of the tag.
      *
      * @return string
@@ -269,5 +283,13 @@ class Tag implements TagInterface
     {
         $this->attributes()->add('class', $value);
         return $this;
+    }
+    
+    /**
+     * Clone: attributes.
+     */
+    public function __clone()
+    {
+        $this->attributes = clone $this->attributes();
     }
 }
