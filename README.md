@@ -115,6 +115,8 @@ $tag = $tag->withHtml('html');
 $tag = $tag->withLevel(2);
 
 $tag = $tag->withAttributes(new Attributes());
+
+$tag = $tag->withAttr(name: 'data-foo', value: 'bar');
 ```
 
 **manipulation methods**
