@@ -10,6 +10,7 @@ HTML tags for PHP applications.
 - [Documentation](#documentation)
     - [Tag](#tag)
         - [Create Tag](#create-tag)
+        - [Tag Factory](#tag-factory)
         - [Tag Interface](#tag-interface)
     - [NullTag](#nulltag) 
     - [Taggable](#taggable)
@@ -69,6 +70,52 @@ $tag = new Tag(
     level: 2, // default is null
     renderEmptyTag: false, // default is true
 );
+```
+
+### Tag Factory
+
+Easily create a tag with the provided tag factory:
+
+```php
+use Tobento\Service\Tag\TagFactory;
+use Tobento\Service\Tag\TagFactoryInterface;
+
+$tagFactory = new TagFactory();
+
+var_dump($tagFactory instanceof TagFactoryInterface);
+// bool(true)
+```
+
+**createTag**
+
+```php
+use Tobento\Service\Tag\TagFactory;
+use Tobento\Service\Tag\TagInterface;
+use Tobento\Service\Tag\Attributes;
+
+$tag = (new TagFactory())->createTag(
+    name: 'p',
+    html: '', // is default
+    attributes: new Attributes(), // is default
+    level: 2, // default is null
+);
+
+var_dump($tag instanceof TagInterface);
+// bool(true)
+```
+
+**createTagFromHtml**
+
+Create a tag from the specified html.
+
+```php
+use Tobento\Service\Tag\TagFactory;
+use Tobento\Service\Tag\TagInterface;
+
+$tag = (new TagFactory())->createTagFromHtml(html: 'html');
+
+var_dump($tag instanceof TagInterface);
+// bool(true)
 ```
 
 ### Tag Interface
