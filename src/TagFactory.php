@@ -36,6 +36,11 @@ class TagFactory implements TagFactoryInterface
         null|AttributesInterface $attributes = null,
         null|int $level = null
     ): TagInterface {
+        
+        if (empty($name)) {
+            return new NullTag($html);
+        }
+        
         return new Tag(
             name: $name,
             html: $html,

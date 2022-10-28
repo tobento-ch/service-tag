@@ -17,6 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Tobento\Service\Tag\TagFactory;
 use Tobento\Service\Tag\TagFactoryInterface;
 use Tobento\Service\Tag\TagInterface;
+use Tobento\Service\Tag\NullTag;
 use Tobento\Service\Tag\Attributes;
 
 /**
@@ -56,6 +57,16 @@ class TagFactoryTest extends TestCase
             $tag
         );
     }
+    
+    public function testCreateTagMethodWithEmptyNameReturnsNullTag()
+    {
+        $tag = (new TagFactory())->createTag(name: '');
+        
+        $this->assertInstanceOf(
+            NullTag::class,
+            $tag
+        );
+    }    
     
     public function testCreateTagFromHtmlMethod()
     {
