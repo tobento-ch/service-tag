@@ -28,6 +28,7 @@ class TagFactory implements TagFactoryInterface
      * @param null|AttributesInterface $attributes
      * @param null|int $level The level depth of the tag.
      * @return TagInterface
+     * @throws CreateTagException
      */
     public function createTag(
         string $name,
@@ -48,6 +49,7 @@ class TagFactory implements TagFactoryInterface
      *
      * @param string|Stringable $html
      * @return TagInterface
+     * @throws CreateTagException
      */
     public function createTagFromHtml(string|Stringable $html): TagInterface
     {
